@@ -1,33 +1,19 @@
 #!/usr/bin/env node
-const { program } = require('commander');
-const { existsSync } = require('fs');
-const { style2js } = require('./style2js');
 
-let source;
+import { program } from 'commander';
+import { style2js, Style2jsParams } from './style2js';
 
-process.on('uncaughtException', (err) => {
-  console.error('😱 Oops, something wrong happened! \x1b[31m%s\x1b[0m', err);
-  process.exit(1);
-});
+let source = '';
 
 program
   .name('style2js')
   .arguments('<source>')
   .action((arg) => {
-    if (!existsSync(arg)) {
-      throw `The provided source file ${arg} does not exist.`;
-    }
     source = arg;
   })
   .requiredOption(
     '--out-dir <dir>',
-    'Output directory where to put the generated files',
-    (dir) => {
-      if (!existsSync(dir)) {
-        throw `The provided directory ${dir} does not exist.`;
-      }
-      return dir;
-    }
+    'Output directory where to put the generated files'
   )
   .option(
     '--export-as <function name>',
@@ -42,7 +28,9 @@ if (process.argv.length < 3) program.help();
 
 program.parse(process.argv);
 
-style2js({ source, ...program })
+const options = program.opts() as Omit<Style2jsParams, 'source'>;
+
+style2js({ source, ...options })
   .then(() => {
     console.log('Style generated 🤘!');
   })

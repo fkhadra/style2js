@@ -1,0 +1,1 @@
+describe('style2js', () => {});
