@@ -2,6 +2,14 @@
   "name": "style2js",
   "version": "0.0.1",
   "description": "Let you import css stylesheet via js when no css loader is available",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fkhadra/style2js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fkhadra/style2js/issues"
+  },
+  "homepage": "https://github.com/fkhadra/style2js#readme",
   "main": "./lib/style2js.js",
   "files": [
     "lib"
