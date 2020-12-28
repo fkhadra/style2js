@@ -9,7 +9,7 @@ program
   .name('style2js')
   .description(
     `
-Generate js file to inject your css into the dom.
+Generate helpers to inject your css into the dom when no css loader is available.
 For example the command below will output 3 files into your dist folder
 
 style2js style.min.css --out-dir ./dist

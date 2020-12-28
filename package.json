@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Let you import css stylesheet via js when no css loader is available",
   "main": "./lib/style2js.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "format": "prettier --write src/",
     "build": "npm run test && npm run tsc",
