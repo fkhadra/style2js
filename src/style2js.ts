@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
-import { join, parse } from 'path';
+import { join } from 'path';
 import { existsSync } from 'fs';
 
 export interface Style2jsParams {
@@ -7,15 +7,13 @@ export interface Style2jsParams {
   outDir: string;
   filename?: string;
   exportAs?: string;
-  appendToFile?: boolean;
   genTypes?: boolean;
   esm?: boolean;
 }
 
 export const enum DefaultParams {
-  FILENAME = 'inject-style.js',
+  FILENAME = 'inject-style',
   EXPORT_AS = 'injectStyle',
-  APPEND_TO_FILE = 0,
   TYPE_DEF = 1,
   ESM = 1,
 }
@@ -25,7 +23,6 @@ export async function style2js({
   outDir,
   filename = DefaultParams.FILENAME,
   exportAs = DefaultParams.EXPORT_AS,
-  appendToFile = Boolean(DefaultParams.APPEND_TO_FILE),
   genTypes = Boolean(DefaultParams.TYPE_DEF),
   esm = Boolean(DefaultParams.ESM),
 }: Style2jsParams) {
@@ -37,13 +34,12 @@ export async function style2js({
       throw `The provided directory ${outDir} does not exist.`;
 
     const style = (await readFile(source, 'utf-8')).replace(/\r?\n|\r/g, '');
-    const writeFlag = appendToFile ? 'a' : 'w';
 
-    console.log('EHREKRJEK');
+    const writeFlag = 'w';
 
     // cjs
     await writeFile(
-      join(outDir, filename),
+      join(outDir, `${filename}.js`),
       `
   "use strict";
   
@@ -61,10 +57,8 @@ export async function style2js({
     );
 
     if (esm) {
-      const esmFilename = `${parse(filename).name}.esm.js`;
-
       await writeFile(
-        join(outDir, esmFilename),
+        join(outDir, `${filename}.esm.js`),
         `
     export function ${exportAs}() {
       var style = "${style}";
