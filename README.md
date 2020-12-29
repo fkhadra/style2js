@@ -18,3 +18,21 @@ import { injectStyle } from "your-library/inject-style";
 // inject the stylesheet into the dom
 injectStyle();
 ```
+
+## Installation
+
+You can install the package with npm or yarn
+
+```sh
+npm i style2js
+// with yarn
+yarn add style2js
+```
+Or use it directly via npx
+
+```sh
+npx style2js
+```
+
+
+
