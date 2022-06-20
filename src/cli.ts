@@ -14,7 +14,7 @@ For example the command below will output 3 files into your dist folder
 
 style2js style.min.css --out-dir ./dist
 |_ inject-style.js
-|_ inject-style.esm.js
+|_ inject-style.esm.mjs
 |_ inject-style.d.ts
 
 When someone use your library, he can do the following to load the css

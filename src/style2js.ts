@@ -58,7 +58,7 @@ export async function style2js({
 
     if (esm) {
       await writeFile(
-        join(outDir, `${filename}.esm.js`),
+        join(outDir, `${filename}.esm.mjs`),
         `
     export function ${exportAs}() {
       var style = "${style}";
