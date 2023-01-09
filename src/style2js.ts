@@ -45,11 +45,11 @@ export async function style2js({
   
   Object.defineProperty(exports, "__esModule", {value: true});
   exports.${exportAs} = ${exportAs};
-  function ${exportAs}() {
+  function ${exportAs}(window_ = window) {
     var style = "${style}";
-    var css = document.createElement('style');
+    var css = window_.document.createElement('style');
     css.innerText = style;
-    document.head.appendChild(css);
+    window_.document.head.appendChild(css);
   }`,
       {
         flag: writeFlag,
@@ -60,11 +60,11 @@ export async function style2js({
       await writeFile(
         join(outDir, `${filename}.esm.mjs`),
         `
-    export function ${exportAs}() {
+    export function ${exportAs}(window_ = window) {
       var style = "${style}";
-      var css = document.createElement('style');
+      var css = window_.document.createElement('style');
       css.innerText = style;
-      document.head.appendChild(css);
+      window_.document.head.appendChild(css);
     }`,
         {
           flag: writeFlag,
@@ -80,7 +80,7 @@ export async function style2js({
      * Inject the style in case you cannot import the css file
      * Call it once in your app
      */
-    export declare function ${exportAs}(): void;
+    export declare function ${exportAs}(window_?: typeof window): void;
     
         `,
         {
