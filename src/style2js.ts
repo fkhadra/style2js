@@ -61,7 +61,7 @@ export async function style2js({
         join(outDir, `${filename}.esm.mjs`),
         `
     export function ${exportAs}() {
-      var style = "${style}";
+      var style = \`${style}\`;
       var css = document.createElement('style');
       css.innerText = style;
       document.head.appendChild(css);
