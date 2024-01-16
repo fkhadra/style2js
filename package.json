@@ -1,6 +1,6 @@
 {
   "name": "style2js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Let you import css stylesheet via js when no css loader is available",
   "repository": {
     "type": "git",
