@@ -46,7 +46,7 @@ export async function style2js({
   Object.defineProperty(exports, "__esModule", {value: true});
   exports.${exportAs} = ${exportAs};
   function ${exportAs}() {
-    var style = "${style}";
+    var style = \`${style}\`;
     var css = document.createElement('style');
     css.innerText = style;
     document.head.appendChild(css);
